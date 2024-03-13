@@ -1,5 +1,5 @@
 ## QVariableStyleSheet
-QVariableStyleSheet is a small library that enables CSS-compliant variable processing in your Qt Stylesheets. 
+QVariableStyleSheet is a small library that enables CSS-compliant variable processing in your Qt Style Sheets. 
 
 ## Usage (C++)
 ```
@@ -16,6 +16,7 @@ QVariableStyleSheet is a small library that enables CSS-compliant variable proce
     */
     QVariableStyleSheet sheet(theme);
     QString processedTheme = sheet.process();
+    this->setStyleSheet(processedTheme);
 ```
 
 ## Usage (QtStyleSheet)
