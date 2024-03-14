@@ -15,9 +15,13 @@ QString QVariableStyleSheet::process()
     QString theme = _stylesheet;
 
     //Process CSS variables in QSS
-    QRegularExpression rootExpression(":root\n{0,}\\s{0,}\\{\n{0,}\\s{0,}(\\s{0,}--.*:.*;\n{0,}){0,}\n{0,}\\s{0,}\\}");
+    QRegularExpression rootExpression(":root\\s*\n*\\s*\\{\n*\\s*(--.*:.*;\n*)*\n*\\s*\\}", QRegularExpression::MultilineOption);
     QRegularExpression variableExpression("--.*:.*;");
-    QRegularExpression variableUsageExpression("var\\(--([a-zA-Z0-9\\-]{1,}){1,}[\\)]{1}");
+    QRegularExpression variableUsageExpression("var\\(--([a-zA-Z0-9\\-]*)*[\\)]{1}");
+    QRegularExpression commentExpression("\\/\\*[^*]*\\*+([^/*][^*]*\\*+)*\\/");
+    theme.remove(commentExpression);
+    theme.replace(QRegularExpression("[\n]{2,}"), QString("\n"));
+    theme.replace(QRegularExpression("[\\s]{2,}"), QString(" "));
 
     QRegularExpressionMatchIterator iterator = rootExpression.globalMatch(theme.toUtf8());
     QMap<QString, QString> variables;
