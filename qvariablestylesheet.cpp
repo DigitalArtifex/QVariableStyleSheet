@@ -16,7 +16,7 @@ QString QVariableStyleSheet::process()
 
     //Process CSS variables in QSS
     QRegularExpression rootExpression(":root\\s*\n*\\s*\\{\n*\\s*(--.*:.*;\n*)*\n*\\s*\\}", QRegularExpression::MultilineOption);
-    QRegularExpression variableExpression("--.*:.*;");
+    QRegularExpression variableExpression("--[a-zA-Z0-9\\-\\_]+:\\s*[a-zA-Z0-9\\-\\_\\#]+;");
     QRegularExpression variableUsageExpression("var\\(--([a-zA-Z0-9\\-]*)*[\\)]{1}");
     QRegularExpression commentExpression("\\/\\*[^*]*\\*+([^/*][^*]*\\*+)*\\/");
     theme.remove(commentExpression);
