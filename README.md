@@ -1,5 +1,5 @@
 ## QVariableStyleSheet
-QVariableStyleSheet is a small library that enables CSS-compliant variable processing in your Qt Style Sheets. 
+QVariableStyleSheet is a small library that enables CSS-compliant variable processing in your Qt/PyQT/PySide Style Sheets. 
 
 ## Usage (C++)
 ```
@@ -17,6 +17,24 @@ QVariableStyleSheet is a small library that enables CSS-compliant variable proce
     QVariableStyleSheet sheet(theme);
     QString processedTheme = sheet.process();
     this->setStyleSheet(processedTheme);
+```
+
+## Usage (python)
+```
+    # Include the header
+    from qvariablestylesheet import QVariableStyleSheet
+    
+    # Load QSS data from file or resource
+    theme = open("stylesheet.qss", 'r').read()  # type: str
+
+    """
+    Declare the variable style sheet.
+    Data is set in the constructor or through the sheet.setStyleSheet() function
+    """
+    sheet = QVariableStyleSheet(theme)  # type: QVariableStyleSheet
+    processedTheme = sheet.process()  # type: str
+    print(processedTheme)
+    self.setStyleSheet(processedTheme)
 ```
 
 ## Usage (QtStyleSheet)
